@@ -3,6 +3,8 @@
 from flask import request
 from flask_restful import fields, marshal_with
 
+from lemon import lemon_app
+
 from . import Resource, api
 
 __author__ = 'lpe234'
@@ -33,6 +35,7 @@ class ArticleApi(Resource):
     @marshal_with(article_marshal)
     def get(self, id):
         import datetime
+        lemon_app.logger.error('get article: {}'.format(id))
         return {
             'id': str(id),
             'title': 'Title',
